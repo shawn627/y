@@ -1,30 +1,36 @@
-import { NextRequest, NextResponse } from 'next/server';
-import crypto from 'crypto';
+import { NextRequest, NextResponse } from 'next/server'
+import crypto from 'crypto'
 
-export async function GET(req: NextRequest) {
-    console.log('Telegram auth request received');
-  const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN!;
-  const { searchParams } = new URL(req.url);
+const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN! // keep secure in env
 
-  const params: Record<string, string> = {};
-  let hash = '';
-  for (const [key, val] of searchParams.entries()) {
-    if (key === 'hash') hash = val;
-    else params[key] = val;
-  }
-
-  const dataCheckString = Object.keys(params)
+function isTelegramDataValid(data: any): boolean {
+  const { hash, ...rest } = data
+  const checkString = Object.keys(rest)
     .sort()
-    .map(k => `${k}=${params[k]}`)
-    .join('\n');
+    .map(key => `${key}=${rest[key]}`)
+    .join('\n')
 
-  const secret = crypto.createHash('sha256').update(BOT_TOKEN).digest();
-  const hmac = crypto.createHmac('sha256', secret).update(dataCheckString).digest('hex');
-  console.log('Telegram auth request received', hmac, hash);
+  const secret = crypto.createHash('sha256').update(BOT_TOKEN).digest()
+  const hmac = crypto.createHmac('sha256', secret).update(checkString).digest('hex')
 
-  if (hmac !== hash) {
-    return NextResponse.json({ ok: false }, { status: 403 });
+  return hmac === hash
+}
+
+export async function POST(req: NextRequest) {
+  const body = await req.json()
+
+  if (!isTelegramDataValid(body)) {
+    return NextResponse.json({ success: false, error: 'Invalid data' }, { status: 401 })
   }
 
-  return NextResponse.redirect('https://y-tan-five.vercel.app/dashboard');
+  // Optional: create/find user in DB
+  const user = {
+    id: body.id,
+    username: body.username,
+    name: `${body.first_name} ${body.last_name || ''}`,
+    photo: body.photo_url,
+  }
+
+  // Optional: Set session/cookie/JWT
+  return NextResponse.json({ success: true, user })
 }

@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import crypto from 'crypto';
 
 export async function GET(req: NextRequest) {
+    console.log('Telegram auth request received');
   const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN!;
   const { searchParams } = new URL(req.url);
 
@@ -19,6 +20,7 @@ export async function GET(req: NextRequest) {
 
   const secret = crypto.createHash('sha256').update(BOT_TOKEN).digest();
   const hmac = crypto.createHmac('sha256', secret).update(dataCheckString).digest('hex');
+  console.log('Telegram auth request received', hmac, hash);
 
   if (hmac !== hash) {
     return NextResponse.json({ ok: false }, { status: 403 });

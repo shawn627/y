@@ -7,7 +7,7 @@ export default function Home() {
     script.src = 'https://telegram.org/js/telegram-widget.js?22';
     script.setAttribute('data-telegram-login', 'whitelabel_bobolive_bot');
     script.setAttribute('data-size', 'large');
-    script.setAttribute('data-auth-url', 'https://staging-winner33.vercel.app/api/telegram-auth'); // ✅ Must be full URL
+    script.setAttribute('data-auth-url', 'https://y-tan-five.vercel.app/api/telegram-auth'); // ✅ Must be full URL
     script.setAttribute('data-request-access', 'write');
     script.async = true;
 

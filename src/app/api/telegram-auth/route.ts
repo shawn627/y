@@ -17,6 +17,7 @@ function isTelegramDataValid(data: any): boolean {
 }
 
 export async function POST(req: NextRequest) {
+    console.log('Telegram auth request received', req);
   const body = await req.json()
 
   if (!isTelegramDataValid(body)) {

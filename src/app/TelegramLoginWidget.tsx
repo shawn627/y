@@ -32,8 +32,8 @@ export default function TelegramLoginWidget() {
     script.async = true;
     script.setAttribute('data-telegram-login', 'whitelabel_bobolive_bot');
     script.setAttribute('data-size', 'large');
+    script.setAttribute('data-onauth', 'onTelegramAuth(user)');
     script.setAttribute('data-request-access', 'write');
-    script.setAttribute('data-onauth', 'onTelegramAuth');
 
     const container = document.getElementById('telegram-button');
     if (container) {

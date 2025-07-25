@@ -7,7 +7,7 @@ export default function Home() {
 
       {/* Telegram Login Widget */}
       <Script src="https://telegram.org/js/telegram-widget.js?7"
-        data-telegram-login="whitelabel_bobolive_bot"  // your bot username
+        data-telegram-login="whitelabelbobolivebot"  // your bot username
         data-size="large"
         data-userpic="true"
         data-request-access="write"

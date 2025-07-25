@@ -23,7 +23,7 @@ export default function TelegramLoginWidget() {
     script.setAttribute("data-telegram-login", "whitelabel_bobolive_bot"); // Your bot username
     script.setAttribute("data-size", "large");
     script.setAttribute("data-userpic", "false");
-    script.setAttribute("data-request-access", "write");
+    // script.setAttribute("data-request-access", "write");
     script.setAttribute("data-onauth", "onTelegramAuth(user)");
 
     document.getElementById("telegram-login")?.appendChild(script);

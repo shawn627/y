@@ -1,18 +1,23 @@
-
 const nextConfig = {
   async headers() {
     return [
       {
-        source: '/(.*)', // Apply to all routes
+        source: "/(.*)",
         headers: [
           {
-            key: 'Content-Security-Policy',
-            value: "script-src 'self' https://telegram.org; frame-src https://oauth.telegram.org",
+            key: "Content-Security-Policy",
+            value:
+              "default-src 'self'; " +
+              "script-src 'self' https://telegram.org https://oauth.telegram.org 'unsafe-inline' 'unsafe-eval'; " +
+              "frame-src https://oauth.telegram.org; " +
+              "connect-src 'self'; " +
+              "img-src 'self' data: https://telegram.org https://oauth.telegram.org; " +
+              "style-src 'self' 'unsafe-inline';",
           },
         ],
       },
-    ]
+    ];
   },
-}
+};
 
-export default nextConfig;
+module.exports = nextConfig;

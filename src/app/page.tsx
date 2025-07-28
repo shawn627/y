@@ -1,19 +1,13 @@
-import Script from 'next/script'
+import TelegramLogin from "./TelegramLogin"
 
 export default function Home() {
   return (
-    <div>
-      <h1>Telegram Login</h1>
+    <div className="min-h-screen flex flex-col items-center justify-center gap-6">
+      <h1 className="text-3xl font-bold">Welcome to My App</h1>
+      <p className="text-lg">Log in with Telegram below:</p>
 
-      {/* Telegram Login Widget */}
-      <Script src="https://telegram.org/js/telegram-widget.js?7"
-        data-telegram-login="whitelabelbobolivebot"  // your bot username
-        data-size="large"
-        data-userpic="true"
-        data-request-access="write"
-        data-auth-url="localhost:3000/auth/telegram"
-        async
-      />
+      {/* Telegram Login Widget inside an iframe */}
+      <TelegramLogin />
     </div>
   )
 }

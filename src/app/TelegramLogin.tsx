@@ -1,6 +1,6 @@
 export default function TelegramLogin() {
     const TelegramBotName = "whitelabelbobolivebot"
-    const TelegramBotOrigin = "http://localhost:3000"
+    const TelegramBotOrigin = "y-tan-five.vercel.app"
     return (
       <div>
         <h1>Login via Telegram</h1>

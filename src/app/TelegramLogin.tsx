@@ -1,3 +1,4 @@
+"use client"
 import { LoginButton } from "@telegram-auth/react";
 
 export default function TelegramLogin() {

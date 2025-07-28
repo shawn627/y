@@ -1,4 +1,17 @@
+"use client"
+import { useEffect } from "react";
+
 export default function TelegramLogin() {
+    useEffect(() => {
+        const handleTelegramLogin = (event: MessageEvent) => {
+          if (event.origin !== "https://oauth.telegram.org") return;
+          console.log("Telegram data received:", event.data);
+        };
+        window.addEventListener("message", handleTelegramLogin);
+        return () => window.removeEventListener("message", handleTelegramLogin);
+      }, []);
+
+      
     const TelegramBotName = "whitelabel_bobolive_bot"
     const TelegramBotOrigin = "https://y-tan-five.vercel.app"
     return (

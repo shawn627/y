@@ -9,7 +9,7 @@ export default function TelegramLogin() {
           width="300"
           height="50"
           frameBorder="0"
-          sandbox="allow-scripts allow-same-origin"
+          sandbox="allow-scripts allow-same-origin allow-popups"
         ></iframe>
       </div>
     )

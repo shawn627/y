@@ -5,9 +5,14 @@ export default function TelegramLogin() {
   return (
     <LoginButton
     botUsername="test_for_fun_1_bot"
-    onAuthCallback={(data) => {
+    onAuthCallback={async (data) => {
       console.log(data);
-      throw new Error("Not implemented");
+    const response = await fetch("http://localhost:3000/auth/telegram/register", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+      const result = await response.json();
+      console.log(result);
     }}
     cornerRadius={5}
     showAvatar={true}

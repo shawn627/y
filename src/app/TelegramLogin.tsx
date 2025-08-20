@@ -17,7 +17,8 @@ export default function TelegramLogin() {
     <LoginButton
     botUsername="test_for_fun_1_bot"
     onAuthCallback={async (data: any) => {
-    
+  
+      console.log(data);
       const response = await fetch("http://localhost:3000/auth/telegram/request", {
         method: "POST",
         body: JSON.stringify(data),

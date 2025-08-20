@@ -24,6 +24,9 @@ export default function TelegramLogin() {
       const response = await fetch("http://localhost:3000/auth/telegram/request", {
         method: "POST",
         body: JSON.stringify(reqObj),
+        headers: {
+          "Content-Type": "application/json",
+        },
       });
       const result = await response.json();
       console.log(result);

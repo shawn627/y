@@ -30,7 +30,7 @@ export default function TelegramLogin() {
       });
       const result = await response.json();
       console.log(result);
-      window.open(result.link, "_blank");
+      window.open(result.data.link, "_blank");
   
     // const response = await fetch("http://localhost:3000/auth/telegram/register", {
     //     method: "POST",
